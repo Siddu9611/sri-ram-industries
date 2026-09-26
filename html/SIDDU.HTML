@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Ram Industries - Attendance System</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f2f2;
+    margin:0;
+}
+header{
+    background:#0066cc;
+    color:#fff;
+    text-align:center;
+    padding:15px;
+}
+.container{
+    width:90%;
+    max-width:900px;
+    background:#fff;
+    margin:20px auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ccc;
+}
+label{
+    font-weight:bold;
+}
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+button{
+    background:#0066cc;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    margin-right:10px;
+}
+button:hover{
+    background:#004b99;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+table,th,td{
+    border:1px solid #ccc;
+}
+th{
+    background:#0066cc;
+    color:white;
+}
+th,td{
+    padding:10px;
+    text-align:center;
+}
+footer{
+    text-align:center;
+    margin:20px;
+    color:#555;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h2>Sri Ram Industries</h2>
+<p>Factory Attendance & Advance Amount Entry</p>
+</header>
+
+<div class="container">
+
+<label>Date</label>
+<input type="date" id="date">
+
+<label>Employee Name</label>
+<input type="text" id="name" placeholder="Enter Employee Name">
+
+<label>Attendance</label>
+<select id="attendance">
+<option>Present</option>
+<option>Absent</option>
+<option>Half Day</option>
+</select>
+
+<label>Advance Amount (₹)</label>
+<input type="number" id="advance" placeholder="Enter Amount">
+
+<label>Notes</label>
+<textarea id="notes" rows="3"></textarea>
+
+<button onclick="saveData()">Save</button>
+
+<button onclick="sendWhatsApp()">Send to WhatsApp</button>
+
+<table id="table">
+<tr>
+<th>Date</th>
+<th>Name</th>
+<th>Attendance</th>
+<th>Advance</th>
+<th>Notes</th>
+</tr>
+</table>
+
+</div>
+
+<footer>
+© Sri Ram Industries
+</footer>
+
+<script>
+
+function saveData(){
+
+let date=document.getElementById("date").value;
+let name=document.getElementById("name").value;
+let attendance=document.getElementById("attendance").value;
+let advance=document.getElementById("advance").value;
+let notes=document.getElementById("notes").value;
+
+if(name==""){
+alert("Enter Employee Name");
+return;
+}
+
+let table=document.getElementById("table");
+
+let row=table.insertRow();
+
+row.insertCell(0).innerHTML=date;
+row.insertCell(1).innerHTML=name;
+row.insertCell(2).innerHTML=attendance;
+row.insertCell(3).innerHTML="₹"+advance;
+row.insertCell(4).innerHTML=notes;
+
+alert("Data Saved");
+
+}
+
+function sendWhatsApp(){
+
+let date=document.getElementById("date").value;
+let name=document.getElementById("name").value;
+let attendance=document.getElementById("attendance").value;
+let advance=document.getElementById("advance").value;
+let notes=document.getElementById("notes").value;
+
+let message=
+"*Sri Ram Industries*%0A%0A"+
+"Date: "+date+"%0A"+
+"Employee: "+name+"%0A"+
+"Attendance: "+attendance+"%0A"+
+"Advance: ₹"+advance+"%0A"+
+"Notes: "+notes;
+
+let phone="919611438319"; // Replace with Company WhatsApp Number
+
+window.open("https://wa.me/"+phone+"?text="+message,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
